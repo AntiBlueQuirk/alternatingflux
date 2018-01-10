@@ -1,0 +1,77 @@
+[
+  {
+    "ingredient": {
+      "item": "immersiveengineering:metal_decoration0",
+      "data": 2
+    },
+    "name": "hvCoil"
+  },
+  {
+    "ingredient": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "stickWood"
+      },
+      {
+        "type": "forge:ore_dict",
+        "ore": "stickTreatedWood"
+      }
+    ],
+    "name": "listWoodenSticks"
+  },
+  {
+    "ingredient": [
+      {
+        "item": "immersiveengineering:tool",
+        "data": 1
+      },
+      {
+        "item": "minecraft:shears",
+        "data": 32767
+      }
+    ],
+    "name": "listCutters"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "name": "ingotIron"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "ingotConstantan"
+    },
+    "name": "ingotConstantan"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "plateConstantan"
+    },
+    "name": "plateConstantan"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "wireConstantan"
+    },
+    "name": "wireConstantan"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustHOPGraphite"
+    },
+    "name": "dustHOPGraphite"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "ingotHOPGraphite"
+    },
+    "name": "ingotHOPGraphite"
+  }
+]

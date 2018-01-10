@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "alternatingflux:wirecoil_af",
+  "result": {
+    "item": "alternatingflux:wirecoil",
+    "data": 0,
+    "count": 4
+  },
+  "pattern": [
+    " IG",
+    "ISI",
+    "GI "
+  ],
+  "key": {
+    "I": {
+      "item": "#wireConstantan"
+    },
+    "G": {
+      "item": "#dustHOPGraphite"
+    },
+    "S": {
+      "item": "#listWoodenSticks"
+    }
+  }
+}

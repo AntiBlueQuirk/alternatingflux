@@ -1,0 +1,17 @@
+[
+{
+  "modid": "alternatingflux",
+  "name": "Alternating Flux",
+  "description": "Adds long distance power transmission to Immersive Engineering",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["AntiBlueQuirk"],
+  "credits": "Thanks to BlueSunrize and Damien A.W. Hazard for creating the awesome mod Immersive Engineering",
+  "logoFile": "",
+  "screenshots": [],
+  "requiredMods": ["immersiveengineering"],
+  "dependencies": ["immersiveengineering"]
+}
+]

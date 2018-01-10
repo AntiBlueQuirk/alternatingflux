@@ -1,0 +1,31 @@
+{
+  "type": "forge:ore_shaped",
+  "result": {
+    "item": "alternatingflux:connector",
+    "data": 1
+  },
+  "pattern": [
+    "H A",
+    "CBC",
+    "III"
+  ],
+  "key": {
+    "A": {
+      "item": "alternatingflux:connector",
+      "data": 0
+    },
+    "H": {
+      "item": "immersiveengineering:connector",
+      "data": 4
+    },
+    "C": {
+      "item": "#ingotConstantan"
+    },
+    "I": {
+      "item": "#ingotIron"
+    },
+    "B": {
+      "item": "#hvCoil"
+    }
+  }
+}

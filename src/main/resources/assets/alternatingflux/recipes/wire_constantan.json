@@ -1,0 +1,16 @@
+{
+  "type": "immersiveengineering:ingredient_shapeless",
+  "damage_tool": 1,
+  "result": {
+    "item": "alternatingflux:material",
+    "data": 0
+  },
+  "ingredients": [
+    {
+      "item": "#plateConstantan"
+    },
+    {
+      "item": "#listCutters"
+    }
+  ]
+}
