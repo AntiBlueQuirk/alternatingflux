@@ -10,8 +10,11 @@ public class Config {
 		@Comment({ "The transfer rates for the wires.", "Order: AF" })
 		public static int[] wireTransferRate = new int[] { 131072 };
 
-		@Comment({ "The percentage of power lost every 16 blocks of distance for a wire network.", "Order: AF" })
-		public static double[] wireLossRatio = new double[] { 0.00125 }; // .00125 is %8 over 1024 blocks
+		@Comment({ "The percentage of power lost every 16 blocks of distance for a wire network.",
+    "The default value of 0.00125 for AF is approximately equivalent to 8% over 1024 blocks, though in practice this will be closer to 11.2% due to the capacity penalty.",
+    "If you'd like to halve that penalty to 4% (5.6%), set this value to 0.000625.",
+    "Order: AF" })
+		public static double[] wireLossRatio = new double[] { 0.00125 };
 
 		@Comment({ "The RGB color of the wires.", "Order: AF" })
 		public static int[] wireColouration = new int[] { 0xf6866c };

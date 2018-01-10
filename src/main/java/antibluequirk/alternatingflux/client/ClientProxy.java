@@ -62,6 +62,7 @@ public class ClientProxy extends CommonProxy {
 		ConnLoader.baseModels.put("transformer_af_right",
 				new ResourceLocation("alternatingflux:block/connector/transformer_af_right.obj"));
 		
+    //This is mostly copied from IE's registerModels function in it's ClientProxy, so we can get everything integrated properly.
 		for(Block block : AlternatingFlux.blocks)
 		{
 			final ResourceLocation loc = Block.REGISTRY.getNameForObject(block);
