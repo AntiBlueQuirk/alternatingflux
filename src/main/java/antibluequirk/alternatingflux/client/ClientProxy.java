@@ -49,7 +49,9 @@ public class ClientProxy extends CommonProxy {
 				                                                      new ItemStack(AlternatingFlux.item_coil, 1, 0)),
 				new ManualPages.Text(m, "alternatingflux1"),
 				new ManualPages.Crafting(m, "alternatingfluxRelay", new ItemStack(AlternatingFlux.block_conn, 1, 0)),
-				new ManualPages.Crafting(m, "alternatingfluxTransformer", new ItemStack(AlternatingFlux.block_conn, 1, 1))
+				new ManualPages.Crafting(m, "alternatingfluxTransformer", new ItemStack(AlternatingFlux.block_conn, 1, 1)),
+				new ManualPages.Text(m, "alternatingflux2"),
+				new ManualPages.Text(m, "alternatingflux3")
 		);
 	}
 	@SubscribeEvent
