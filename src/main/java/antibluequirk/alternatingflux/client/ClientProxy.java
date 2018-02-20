@@ -7,6 +7,7 @@ import antibluequirk.alternatingflux.CommonProxy;
 import antibluequirk.alternatingflux.Config;
 import antibluequirk.alternatingflux.item.ItemAFBase;
 import blusunrize.immersiveengineering.api.ManualHelper;
+import blusunrize.immersiveengineering.api.energy.wires.WireApi;
 import blusunrize.immersiveengineering.client.IECustomStateMapper;
 import blusunrize.immersiveengineering.client.models.obj.IEOBJLoader;
 import blusunrize.immersiveengineering.client.models.smart.ConnLoader;
@@ -23,6 +24,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,14 +57,18 @@ public class ClientProxy extends CommonProxy {
 		);
 	}
 	@SubscribeEvent
+    public void registerTextures(TextureStitchEvent.Pre event){
+        event.getMap().registerSprite(AlternatingFlux.TEX_PASSTHROUGH_AF);
+    }
+	@SubscribeEvent
 	public void registerModels(ModelRegistryEvent evt)
 	{
-		ConnLoader.baseModels.put("conn_af", new ResourceLocation("alternatingflux:block/connector/connector_af.obj"));
-		ConnLoader.baseModels.put("rel_af", new ResourceLocation("alternatingflux:block/connector/relay_af.obj"));
-		ConnLoader.baseModels.put("transformer_af_left",
-				new ResourceLocation("alternatingflux:block/connector/transformer_af_left.obj"));
-		ConnLoader.baseModels.put("transformer_af_right",
-				new ResourceLocation("alternatingflux:block/connector/transformer_af_right.obj"));
+		WireApi.registerConnectorForRender("conn_af", new ResourceLocation("alternatingflux:block/connector/connector_af.obj"), null);
+		WireApi.registerConnectorForRender("rel_af", new ResourceLocation("alternatingflux:block/connector/relay_af.obj"), null);
+		WireApi.registerConnectorForRender("transformer_af_left",
+				new ResourceLocation("alternatingflux:block/connector/transformer_af_left.obj"), null);
+		WireApi.registerConnectorForRender("transformer_af_right",
+				new ResourceLocation("alternatingflux:block/connector/transformer_af_right.obj"), null);
 		
     //This is mostly copied from IE's registerModels function in it's ClientProxy, so we can get everything integrated properly.
 		for(Block block : AlternatingFlux.blocks)

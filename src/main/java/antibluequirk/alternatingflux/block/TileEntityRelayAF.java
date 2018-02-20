@@ -33,6 +33,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -83,7 +84,7 @@ public class TileEntityRelayAF extends TileEntityImmersiveConnectable
 	}
 	
 	@Override
-	public boolean canConnectCable(WireType cableType, TargetingInfo target)
+	public boolean canConnectCable(WireType cableType, TargetingInfo target, Vec3i offset)
 	{
 		if(cableType!=AFWireType.AF)
 			return false;
@@ -106,6 +107,12 @@ public class TileEntityRelayAF extends TileEntityImmersiveConnectable
 	}
 
 	@Override
+	protected float getBaseDamage(Connection c)
+	{
+		return 8*30F/c.cableType.getTransferRate();
+	}
+	
+	@Override
 	public void writeCustomNBT(NBTTagCompound nbt, boolean descPacket) {
 		super.writeCustomNBT(nbt, descPacket);
 		nbt.setInteger("facing", facing.ordinal());
@@ -116,13 +123,8 @@ public class TileEntityRelayAF extends TileEntityImmersiveConnectable
 		super.readCustomNBT(nbt, descPacket);
 		facing = EnumFacing.getFront(nbt.getInteger("facing"));
 	}
-
-	@Override
-	public Vec3d getRaytraceOffset(IImmersiveConnectable link)
-	{
-		EnumFacing side = facing.getOpposite();
-		return new Vec3d(.5+side.getFrontOffsetX()*.4375, .5+side.getFrontOffsetY()*.4375, .5+side.getFrontOffsetZ()*.4375);
-	}
+	
+	
 	@Override
 	public Vec3d getConnectionOffset(Connection con)
 	{

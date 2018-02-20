@@ -16,9 +16,13 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -29,7 +33,8 @@ public class BlockConnector extends BlockAFTileProvider<BlockTypes_Connector>
 {
 	public BlockConnector()
 	{
-		super("connector", Material.IRON, PropertyEnum.create("type", BlockTypes_Connector.class), ItemBlockIEBase.class, IEProperties.FACING_ALL, IEProperties.BOOLEANS[0], IEProperties.BOOLEANS[1], IEProperties.MULTIBLOCKSLAVE, IOBJModelCallback.PROPERTY);
+		super("connector", Material.IRON, PropertyEnum.create("type", BlockTypes_Connector.class), ItemBlockIEBase.class, IEProperties.FACING_ALL,
+			IEProperties.BOOLEANS[0], IEProperties.BOOLEANS[1], IEProperties.MULTIBLOCKSLAVE, IOBJModelCallback.PROPERTY);
 		setHardness(3.0F);
 		setResistance(15.0F);
 		lightOpacity = 0;
@@ -72,6 +77,23 @@ public class BlockConnector extends BlockAFTileProvider<BlockTypes_Connector>
 			state = ext.withProperty(IEProperties.CONNECTIONS, ((TileEntityImmersiveConnectable)te).genConnBlockstate());
 		}
 		return state;
+	}
+	
+	@Override
+	public boolean canIEBlockBePlaced(World world, BlockPos pos, IBlockState newState, EnumFacing side, float hitX, float hitY, float hitZ, EntityPlayer player, ItemStack stack)
+	{
+		switch (BlockTypes_Connector.values()[stack.getItemDamage()])
+		{
+			case TRANSFORMER_AF:
+				for (int hh = 1; hh <= 2; hh++)
+				{
+					BlockPos pos2 = pos.up(hh);
+					if (world.isOutsideBuildHeight(pos2) || !world.getBlockState(pos2).getBlock().isReplaceable(world, pos2))
+						return false;
+				}
+			break;
+		}
+		return true;
 	}
 	
 	@Override

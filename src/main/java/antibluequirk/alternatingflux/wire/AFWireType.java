@@ -2,15 +2,18 @@ package antibluequirk.alternatingflux.wire;
 
 import antibluequirk.alternatingflux.AlternatingFlux;
 import antibluequirk.alternatingflux.Config.AFConfig;
+import antibluequirk.alternatingflux.block.BlockTypes_Connector;
 import blusunrize.immersiveengineering.api.energy.wires.ImmersiveNetHandler.Connection;
+import blusunrize.immersiveengineering.api.energy.wires.WireApi;
 import blusunrize.immersiveengineering.api.energy.wires.WireType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AFWireType extends WireType {
-	public static AFWireType AF = new AFWireType(0);
+	public static AFWireType AF;
 
 	final int ordinal;
 
@@ -25,6 +28,15 @@ public class AFWireType extends WireType {
 	public AFWireType(int ordinal) {
 		super();
 		this.ordinal = ordinal;
+	}
+	
+	public static void init()
+	{
+		AF = new AFWireType(0);
+		WireApi.registerFeedthroughForWiretype(AF, new ResourceLocation(AlternatingFlux.MODID, "block/connector/relay_af.obj"),
+				AlternatingFlux.TEX_PASSTHROUGH_AF, new float[]{0, 0, 16, 16},
+				.75, (s)->s.getBlock()== AlternatingFlux.block_conn && s.getValue(AlternatingFlux.block_conn.property) == BlockTypes_Connector.RELAY_AF,
+				8*30F/AF.getTransferRate(), 15, (f)->f);
 	}
 
 	/**
@@ -78,6 +90,28 @@ public class AFWireType extends WireType {
 
 	@Override
 	public boolean isEnergyWire() {
+		return true;
+	}
+	
+	@Override
+	public String getCategory()
+	{
+		return "AF";
+	}
+
+	@Override
+	public double getDamageRadius()
+	{
+		switch (ordinal)
+		{
+			case 0://AF
+				return .5;
+		}
+		return 0;
+	}
+		
+	@Override
+	public boolean canCauseDamage() {
 		return true;
 	}
 }

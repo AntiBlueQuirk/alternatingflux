@@ -11,6 +11,7 @@ import antibluequirk.alternatingflux.block.TileEntityTransformerAF;
 import antibluequirk.alternatingflux.item.ItemAFBase;
 import antibluequirk.alternatingflux.item.ItemMaterial;
 import antibluequirk.alternatingflux.item.ItemWireCoil;
+import antibluequirk.alternatingflux.wire.AFWireType;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -52,7 +53,8 @@ public class AlternatingFlux {
 	public static ItemAFBase	item_conn		= null;
 	public static ItemWireCoil	item_coil		= null;
 	public static ItemMaterial	item_material	= null;
-
+	
+	public static ResourceLocation TEX_PASSTHROUGH_AF = new ResourceLocation(AlternatingFlux.MODID, "blocks/passthrough_af");
 	@SidedProxy(clientSide = "antibluequirk.alternatingflux.client.ClientProxy", serverSide = "antibluequirk.alternatingflux.CommonProxy")
 	public static CommonProxy proxy;
 
@@ -61,6 +63,7 @@ public class AlternatingFlux {
 		logger = e.getModLog();
 		Config.preInit(e);
 
+		AFWireType.init();
 		proxy.preInit();
 
 		GameRegistry.registerTileEntity(TileEntityRelayAF.class, MODID + ":af_relay");
