@@ -65,7 +65,9 @@ public class ItemWireCoil extends ItemAFBase implements IWireCoil {
 		}
 	}
 
-	// Copied from IE, due to a lack of other options. See inside the function for details.
+	// Copied from IE, due to a lack of other options. If IE's ItemWireCoil.onItemUse was factored out
+	// into a static function, this wouldn't be necessary. (Well, it would also need a call out for
+	// connection checks. See inside the function for details.)
 	@Nonnull
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
@@ -117,7 +119,7 @@ public class ItemWireCoil extends ItemAFBase implements IWireCoil {
 					{
 						TargetingInfo targetLink = TargetingInfo.readFromNBT(ItemNBTHelper.getTagCompound(stack, "targettingInfo"));
 						//If there was some sort of call out here in the original function, we might not need to copy this function.
-						if(!(tileEntityLinkingPos instanceof IImmersiveConnectable)||!((IImmersiveConnectable) tileEntityLinkingPos).canConnectCable(wire, targetLink, offset) || !canConnectCable(wire, tileEntity))
+						if(!(tileEntityLinkingPos instanceof IImmersiveConnectable)||!((IImmersiveConnectable) tileEntityLinkingPos).canConnectCable(wire, targetLink, offset) || !canConnectCable(wire, tileEntityLinkingPos))
 							player.sendMessage(new TextComponentTranslation(Lib.CHAT_WARN+"invalidPoint"));
 						else
 						{
