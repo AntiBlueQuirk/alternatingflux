@@ -38,7 +38,12 @@ import net.minecraft.util.math.Vec3d;
 
 public class TileEntityTransformerAF extends TileEntityTransformerHV
 {
-	public WireType getSecondCable() { return super.getLimiter(1); }
+    {
+        acceptableLowerWires = ImmutableSet.of(WireType.HV_CATEGORY);
+    }
+
+
+	//public WireType getSecondCable() { return super.getLimiter(1); }
 	
 	@Override
 	protected boolean canTakeLV()
@@ -65,54 +70,11 @@ public class TileEntityTransformerAF extends TileEntityTransformerHV
 	protected float getHigherOffset() {
 		return .75F;
 	}
-	
+
 	@Override
-	public boolean canConnectCable(WireType cableType, TargetingInfo target)
-	{
-		//if(cableType != WireType.STEEL && cableType != AFWireType.AF)
-		//	return false;
-		if(dummy!=0) {
-			TileEntity master = world.getTileEntity(getPos().add(0, -dummy, 0));
-			return master instanceof TileEntityTransformer && ((TileEntityTransformer) master).canConnectCable(cableType, target);
-		}
-		int tc = getTargetedConnector(target);
-		switch(tc)
-		{
-		case 0:
-			return canAttach(cableType, limitType, getSecondCable());
-		case 1:
-			return canAttach(cableType, getSecondCable(), limitType);
-		}
-		return false;
-	}
-	private boolean canAttach(WireType toAttach, WireType atConn, WireType other) {
-		if (atConn!=null)
-			return false;
-		if (other==null)
-			return true;
-		if (other==toAttach)
-			return false;
-		WireType higher = AFWireType.AF;
-		return toAttach==higher||other==higher;
-	}
-	
-	@Override
-	public boolean getIsMirrored()
-	{
-		if (onPost)
-			return false;
-		if (dummy!=0) {
-			TileEntity master = world.getTileEntity(pos.down(dummy));
-			return master instanceof TileEntityTransformer && ((TileEntityTransformer) master).getIsMirrored();
-		}
-		else
-		{
-			if (limitType==null&&getSecondCable()==null)
-				return true;
-			WireType higher = AFWireType.AF;
-			boolean b = (limitType != null && higher.equals(limitType)) || (getSecondCable() != null && !higher.equals(getSecondCable()));
-			return b;
-		}
-	}
+    public String getHigherWiretype()
+    {
+        return "AF";
+    }
 
 }
