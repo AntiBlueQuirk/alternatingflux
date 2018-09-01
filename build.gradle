@@ -1,5 +1,5 @@
-def mainVersion = "0.12"
-def buildNumber = "4"
+def mainVersion = "0.12.2"
+def buildNumber = "1"
 
 buildscript {
     repositories {
