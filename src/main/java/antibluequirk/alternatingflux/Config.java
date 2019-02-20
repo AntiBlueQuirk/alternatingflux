@@ -55,6 +55,6 @@ public class Config {
 		alternatingflux_afkmLossMin = Math.round(alternatingflux_afkmLossMin * 10.0) / 10.0;
 		alternatingflux_afkmLossMax = Math.round(alternatingflux_afkmLossMax * 10.0) / 10.0;
 		alternatingflux_afMaxLength = AFConfig.wireLength[0];
-		blusunrize.immersiveengineering.common.Config.checkMappedValues(Config.class);
+		blusunrize.immersiveengineering.common.Config.validateAndMapValues(Config.class);
 	}
 }
